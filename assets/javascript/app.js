@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
     var topics = ["spiderman", "iron man", "thor", "guardians of the galaxy", "captain america", "black panther", "doctor strange"];
+    
 
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL";
+    var gifImage = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL&q=" + gifImage + "&limit=25&offset=0&rating=G&lang=en";
 
     function gifInfo() {
         $.ajax({
@@ -11,39 +13,37 @@ $(document).ready(function() {
         }).then(function(response) {
     
             console.log(response);
-                            // Creating a div to hold the topic
+            // Creating a div to hold the topic
             
-            for (var i = 0; i < response.data.length; i++) {
 
                      
-                var image = response.data[i];
+            var image = response.data[i];
     
-                var topicDiv = $("<div class='topic'>");
+            var topicDiv = $("<div class='topic'>");
     
-                // Storing the rating data
-                var rate = image.rating;
+            // Storing the rating data
+            var rate = image.rating;
         
-                // Creating an element to have the rating displayed
-                var pOne = $("<p>").text("Rating: " + rate);
+            // Creating an element to have the rating displayed
+            var pOne = $("<p>").text("Rating: " + rate);
         
-                // Displaying the rating
-                topicDiv.append(pOne);
+            // Displaying the rating
+            topicDiv.append(pOne);
                 
-    
-                // get image
-                var photo = image.images.original.url;
+            // get image
+            var photo = image.images.original.url;
     
         
-                // Creating an element to hold the image
-                var image = $("<img>").attr("src", photo);
+            // Creating an element to hold the image
+            var image = $("<img>").attr("src", photo);
         
-                // Appending the image
-                topicDiv.append(image);
+            // Appending the image
+            topicDiv.append(image);
         
-                // Putting the entire topic above the previous topic
-                $("#topic-view").prepend(topicDiv);
+            // Putting the entire topic above the previous topic
+            $("#topic-view").prepend(topicDiv);
     
-            }
+        
     
         });
     }
