@@ -2,11 +2,11 @@ $(document).ready(function() {
 
     var topics = ["spiderman", "iron man", "thor", "guardians of the galaxy", "captain america", "black panther", "doctor strange"];
     
+function gifInfo() {
 
     var gifImage = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL&q=" + gifImage + "&limit=25&offset=0&rating=G&lang=en";
 
-    function gifInfo() {
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -14,11 +14,10 @@ $(document).ready(function() {
     
             console.log(response);
             // Creating a div to hold the topic
-            
-
-                     
+        
+        for (var i = 0; i < response.data.length; i++) {
             var image = response.data[i];
-    
+
             var topicDiv = $("<div class='topic'>");
     
             // Storing the rating data
@@ -41,9 +40,9 @@ $(document).ready(function() {
             topicDiv.append(image);
         
             // Putting the entire topic above the previous topic
-            $("#topic-view").prepend(topicDiv);
+            $("#topic-view").append(topicDiv);
     
-        
+    }
     
         });
     }
