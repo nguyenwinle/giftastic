@@ -2,15 +2,18 @@ $(document).ready(function() {
 
     var topics = ["spiderman", "iron man", "thor", "guardians of the galaxy", "captain america", "black panther", "doctor strange"];
     
+
 function gifInfo() {
 
     var gifImage = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL&q=" + gifImage + "&limit=25&offset=0&rating=G&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL&q=" + gifImage + "&limit=10&offset=0&rating=G&rating=PG&lang=en";
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
+
+            $(".topic").empty();
     
             console.log(response);
             // Creating a div to hold the topic
@@ -30,7 +33,7 @@ function gifInfo() {
             topicDiv.append(pOne);
                 
             // get image
-            var photo = image.images.original.url;
+            var photo = image.images.downsized.url;
     
         
             // Creating an element to hold the image
@@ -41,7 +44,8 @@ function gifInfo() {
         
             // Putting the entire topic above the previous topic
             $("#topic-view").append(topicDiv);
-    
+            
+
     }
     
         });
@@ -51,7 +55,7 @@ function gifInfo() {
       
       function renderButtons() {
 
-        $("#topic-view").empty();
+         $("#topic-view").empty();
 
         for (var i = 0; i < topics.length; i++) {
 
@@ -59,7 +63,7 @@ function gifInfo() {
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var a = $("<button>");
             // Adding a class
-            a.addClass("topic");
+            a.addClass("gifs");
             // Adding a data-attribute with a value of the topic at index i
             a.attr("data-name", topics[i]);
             // Providing the button's text with a value of the topic at index i
@@ -88,52 +92,9 @@ function gifInfo() {
 
       });
 
-      $(document).on("click", ".topic", gifInfo);
+      $(document).on("click", ".gifs", gifInfo);
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
-
-
-    //   $(".topic").on("click", function() {
-    //     $(this).
-    //   });
-// when user adds an item
-// add it to our array
-
-//when user presses on that item
-// loop through array
-// and display it on the page
-
-
-// Instructions
-
-
-
-// Before you can make any part of our site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called topics.
-
-
-// We chose animals for our theme, but you can make a list to your own liking.
-
-
-
-// Your app should take the topics in this array and create buttons in your HTML.
-
-
-// Try using a loop that appends a button for each string in the array.
-
-
-// When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
-// When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
-
-// Under every gif, display its rating (PG, G, so on).
-
-
-// This data is provided by the GIPHY API.
-// Only once you get images displaying with button presses should you move on to the next step.
-
-
-// Add a form to your page takes the value from a user input box and adds it into your topics array. Then make a function call that takes each topic in the array remakes the buttons on the page.
-// Deploy your assignment to Github Pages.
-// Rejoice! You just made something really cool.
 
 });
