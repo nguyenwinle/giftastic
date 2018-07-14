@@ -4,41 +4,50 @@ $(document).ready(function() {
 
     var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=APcYrbFKCKhTApeLNz9YIsO6uPMqSgzL";
 
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-
-
-                      // Creating a div to hold the movie
-                      var topicDiv = $("<div class='topic'>");
-
-                      // Storing the rating data
-                      var rate = response.rating;
-            
-                      // Creating an element to have the rating displayed
-                      var pOne = $("<p>").text("Rating: " + rate);
-            
-                      // Displaying the rating
-                      topicDiv.append(pOne);
-                      
-
-                      // get image
-                      var image = response.data[i];
-                      var photo = image.images.original.url;
+    function gifInfo() {
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
     
+            console.log(response);
+                            // Creating a div to hold the topic
             
-                      // Creating an element to hold the image
-                      var image = $("<img>").attr("src", photo);
-            
-                      // Appending the image
-                      topicDiv.append(image);
-            
-                      // Putting the entire topic above the previous topic
-                      $("#topic-view").prepend(topicDiv);
+            for (var i = 0; i < response.data.length; i++) {
 
-    });
+                     
+                var image = response.data[i];
+    
+                var topicDiv = $("<div class='topic'>");
+    
+                // Storing the rating data
+                var rate = image.rating;
+        
+                // Creating an element to have the rating displayed
+                var pOne = $("<p>").text("Rating: " + rate);
+        
+                // Displaying the rating
+                topicDiv.append(pOne);
+                
+    
+                // get image
+                var photo = image.images.original.url;
+    
+        
+                // Creating an element to hold the image
+                var image = $("<img>").attr("src", photo);
+        
+                // Appending the image
+                topicDiv.append(image);
+        
+                // Putting the entire topic above the previous topic
+                $("#topic-view").prepend(topicDiv);
+    
+            }
+    
+        });
+    }
+
 
       
       function renderButtons() {
@@ -80,8 +89,15 @@ $(document).ready(function() {
 
       });
 
-      // Calling the renderButtons function at least once to display the initial list of gifs
+      $(document).on("click", ".topic", gifInfo);
+
+      // Calling the renderButtons function to display the intial buttons
       renderButtons();
+
+
+    //   $(".topic").on("click", function() {
+    //     $(this).
+    //   });
 // when user adds an item
 // add it to our array
 
