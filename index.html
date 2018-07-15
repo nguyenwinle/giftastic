@@ -15,19 +15,25 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <!-- gifs will get dumped here -->
-        <div id="topic-view"></div>
-        <h1>Gif Search</h1>
-        <form id="topic-form">
-          <label for="topic-input">Add gif</label>
-          <input type="text" id="topic-input"><br>
+        <div class = "row">
+            <div class = "col-md-8">
+                <div class = "row">
+                    <div id="topic-view" class = "row"></div>
+                </div>
+            </div>
+            <div class = "col-md-4">
+                <form id="topic-form">
+                    <input type="text" id="topic-input" class="form-control" placeholder="Add Superhero...">
+                      <!-- Button triggers new gifs to be added -->
+                    <input id ="add-topic" class="btn btn-outline-primary btn-block" type="submit" value="Submit">
+                 </form>
+                 <p>Click on gif to play or pause.</p>
+            </div>
+        </div>
+    </div>
     
-          <!-- Button triggers new gifs to be added -->
-          <input id="add-topic" type="submit" value="Add topic">
-        </form>
-    
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

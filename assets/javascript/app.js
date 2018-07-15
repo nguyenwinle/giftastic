@@ -20,14 +20,14 @@ $(document).ready(function() {
 
     $('body').on('click', '.gifImg', function() {
         var src = $(this).attr("src");
-      if($(this).hasClass('playing')){
-         //stop
-         $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
-         $(this).removeClass('playing');
-      } else {
-        //play
-        $(this).addClass('playing');
-        $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+        if($(this).hasClass('playing')){
+            //stop
+            $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+            $(this).removeClass('playing');
+        } else {
+            //play
+            $(this).addClass('playing');
+            $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
       }
     });
 
@@ -83,11 +83,13 @@ $(document).ready(function() {
 
          $("#topic-view").empty();
 
+        //loop through the array
+        // for each of the elements, create a button for it
         for (var i = 0; i < topics.length; i++) {
 
             // Then dynamicaly generating buttons for each topic in the array.
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-            var a = $("<button>");
+            var a = $("<button class = 'btn btn-outline-secondary'>");
             // Adding a class
             a.addClass("gifs");
             // Adding a data-attribute with a value of the topic at index i
@@ -96,9 +98,6 @@ $(document).ready(function() {
             a.text(topics[i]);
             // Adding the button to the HTML
             $("#topic-view").append(a);
-
-            //loop through the array
-            // for each of the elements, create a button for it
       }
     }
 

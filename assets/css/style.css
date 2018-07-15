@@ -1,0 +1,24 @@
+html,
+body {
+    padding: 10px;
+}
+
+img {
+    padding: 5px;
+}
+
+p {
+    padding: 5px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+#topic-input {
+    margin: 5px;
+}
+
+#topic-view {
+    margin: 0 auto;
+}
