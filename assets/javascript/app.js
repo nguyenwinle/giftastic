@@ -71,7 +71,7 @@ $(document).ready(function() {
                 topicDiv.append(image);
                 
                 // Putting the entire topic above the previous topic
-                $("#topic-view").append(topicDiv);
+                $(".view").append(topicDiv);
                 
             }
         
